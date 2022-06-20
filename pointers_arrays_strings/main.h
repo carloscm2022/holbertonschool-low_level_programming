@@ -38,5 +38,9 @@ int _strcmp(char *s1, char *s2);
 void reverse_array(int *a, int n);
 /*task 5*/
 char *string_toupper(char *);
+/*task 6*/
+char *cap_string(char *);
+/*task 7*/
+char *leet(char *);
 
 #endif
