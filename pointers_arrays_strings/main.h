@@ -48,6 +48,8 @@ char *rot13(char *);
 void print_number(int n);
 /*task 11*/
 char *infinite_add(char *n1, char *n2, char *r, int size_r);
+/*task 12*/
+void print_buffer(char *b, int size);
 
 /*Project 4*/
 /*task 0*/
