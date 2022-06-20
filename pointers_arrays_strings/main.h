@@ -49,4 +49,6 @@ char *_memset(char *s, char b, unsigned int n);
 char *_memcpy(char *dest, char *src, unsigned int n);
 /*task 2*/
 char *_strchr(char *s, char c);
+/*task 3*/
+unsigned int _strspn(char *s, char *accept);
 #endif
