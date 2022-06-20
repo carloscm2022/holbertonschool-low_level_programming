@@ -42,6 +42,8 @@ char *string_toupper(char *);
 char *cap_string(char *);
 /*task 7*/
 char *leet(char *);
+/*task 8*/
+char *rot13(char *);
 /*Project 4*/
 /*task 0*/
 char *_memset(char *s, char b, unsigned int n);
