@@ -28,5 +28,7 @@ int _atoi(char *s);
 /*Project 3*/
 /*task 0*/
 char *_strcat(char *dest, char *src);
+/*task 1*/
+char *_strncat(char *dest, char *src, int n);
 
 #endif
