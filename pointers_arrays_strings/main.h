@@ -34,5 +34,7 @@ char *_strncat(char *dest, char *src, int n);
 char *_strncpy(char *dest, char *src, int n);
 /*task 3*/
 int _strcmp(char *s1, char *s2);
+/*task 4*/
+void reverse_array(int *a, int n);
 
 #endif
