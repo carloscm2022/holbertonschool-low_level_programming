@@ -30,5 +30,7 @@ int _atoi(char *s);
 char *_strcat(char *dest, char *src);
 /*task 1*/
 char *_strncat(char *dest, char *src, int n);
+/*task 2*/
+char *_strncpy(char *dest, char *src, int n);
 
 #endif
