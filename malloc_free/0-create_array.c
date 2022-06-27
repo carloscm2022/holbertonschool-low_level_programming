@@ -1,24 +1,33 @@
-#include <stdio.h>
+#include "main.h"
 #include <stdlib.h>
+#include <math.h>
+
 /**
- * create_array - create array
- * @size: size
- * @c: constant
- * Return: char pointer
+ * create_array - Creates an array of chars, and initializes it
+ * with a specific char.
+ *
+ * @size: Size of the new array
+ *
+ * @c: Char to use in the new array
+ *
+ * Return: A new array with the same char, or NULL if size is 0
+ * or 1 if malloc fails
  */
+
 char *create_array(unsigned int size, char c)
 {
-	char *p;
-	unsigned int i;
+	char *jarvis;
+	unsigned int u;
 
-	if (size == 0)
-	return (0);
-	p = malloc((size) * sizeof(char));
-	if (p == '\0')
-	return (0);
-	for (i = 0; i < size; i++)
+	jarvis = (char *)malloc(sizeof(char) * size);
+
+	if (jarvis == NULL || size == 0)
 	{
-		p[i] = c;
+		return (NULL);
 	}
-return (p);
+	for (u = 0; u < size; u++)
+	{
+		jarvis[u] = c;
+	}
+	return (jarvis);
 }
