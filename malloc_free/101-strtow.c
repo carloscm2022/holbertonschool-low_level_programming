@@ -2,53 +2,123 @@
 #include <stdlib.h>
 
 /**
- * argstostr - Concatenates all the arguments of your program.
+ * only_spaces - Discover if only exists spaces in a string.
  *
- * @ac: arg count
+ * @str: String to search the spaces.
  *
- * @av: arg vector
- *
- * Return: Pointer to a new string
+ * Return: 1 if exist other char, 0 if not.
  */
 
-char *argstostr(int ac, char **av)
+unsigned int only_spaces(char *str)
 {
-	int i, j, size = 0, count = 0;
-	char *final_string;
+	unsigned int flag = 1, i = 0;
 
-	if (ac == 0 || av == NULL)
+	while (str[i] == 32)
+		i++;
+
+	if (!str[i])
+		flag = 0;
+
+	return (flag);
+}
+
+/**
+ * count_to_the_next_space - Count the characters ultil the next space.
+ *
+ * @str: String to search the space.
+ *
+ * @index: From where to start looking
+ *
+ * Return: The quantity of characters to the next spaces
+ */
+
+unsigned int count_to_the_next_space(char *str, unsigned int index)
+{
+	unsigned int counter = 0, i = index;
+
+	while (str[i] != 32 /* || !str[i] */)
+	{
+		if (!str[i])
+			break;
+		i++, counter++;
+	}
+
+	return (counter + 1);
+}
+
+/**
+ * number_of_words - Count the words on an array.
+ *
+ * @str: String to search words.
+ *
+ * Return: Number of words of an string separated by spaces.
+ */
+
+unsigned int number_of_words(char *str)
+{
+	unsigned int counter = 0, i = 0, flag = 0;
+
+	for (; str[i]; i++)
+	{
+		if ((str[i] == 32 || !str[i + 1]) && flag == 0)
+			continue;
+		else if ((str[i] == 32 || !str[i + 1]) && flag == 1)
+			flag = 0, counter++;
+		flag = 1;
+	}
+
+	return (counter + 1);
+}
+
+/**
+ * strtow - Splits a string into words.
+ *
+ * @str: String to split.
+ *
+ * Return: Double pointer to a new string filled of words, NULL if fails
+ * or if the str is NULL.
+ */
+
+char **strtow(char *str)
+{
+	char **result = NULL;
+	int i = 0, j = 0, flag = 0, len = 0, tmp = 0;
+	unsigned int quantity_of_words = 0;
+
+	if (str == NULL || *str == '\0' || !only_spaces(str))
 		return (NULL);
 
-	for (i = 0; i < ac; i++)
-	{
-		for (j = 0; av[i][j]; j++)
-			;
-		size += j + 1;
-	}
+	quantity_of_words = number_of_words(str);
 
-	final_string = malloc((size + 1) * sizeof(char));
-
-	if (!final_string)
-	{
-		free(final_string);
+	result = malloc(quantity_of_words * sizeof(void *));
+	if (!result)
 		return (NULL);
-	}
-
-	for (i = 0; i < ac; i++)
+	for (; str[i]; i++)
 	{
-		for (j = 0; av[i][j]; j++)
+		if (str[i] == 32)
 		{
-			final_string[count] = av[i][j];
-			count++;
+			if (flag)
+				flag = 0, tmp = 0, j++;
+			continue;
 		}
+		if (!flag)
+		{
+			len = count_to_the_next_space(str, i);
+			result[j] = malloc(len * sizeof(char));
+			if (result[j] == NULL)
+			{
+				for (; j >= 0 ; j--)
+					free(result[j]);
+				free(result);
+				return (NULL);
+			}
+			flag = 1;
+		}
+		result[j][tmp] = str[i];
+		tmp++;
 
-		if (!av[i][j])
-		{
-			final_string[count] = '\n';
-			count++;
-		}
+		if (str[i + 1] == 32 || !str[i + 1])
+			result[j][tmp] = '\0';
 	}
-
-	final_string[count + 1] = '\0';
-	return (final_string);
+	return (result);
 }
