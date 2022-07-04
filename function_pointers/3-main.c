@@ -1,17 +1,18 @@
-#include <stdlib.h>
-#include <stdio.h>
 #include "3-calc.h"
 
 /**
- * main - main file
- * @argc: number of lines arguments
- * @argv: array of elements
- * Return: 0
+ * main - Do the basic operations (+, -, *, /, %)
+ *
+ * @argc: Number of arguments
+ *
+ * @argv: Vector of arguments
+ *
+ * Return: The result of an basic operation (+, -, *, /, %)
  */
 
 int main(int argc, char *argv[])
 {
-	int R;
+	int num1, num2, result = 0;
 
 	if (argc != 4)
 	{
@@ -19,8 +20,12 @@ int main(int argc, char *argv[])
 		exit(98);
 	}
 
-	R = (*get_op_func(argv[2]))(atoi(argv[1]), atoi(argv[3]));
-	printf("%d\n", R);
+	num1 = atoi(argv[1]);
+	num2 = atoi(argv[3]);
+
+	result = get_op_func(argv[2])(num1, num2);
+
+	printf("%d\n", result);
 
 	return (0);
 }
