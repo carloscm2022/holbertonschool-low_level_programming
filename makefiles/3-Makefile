@@ -1,18 +1,18 @@
 CC = gcc
-SRC = main.c holberton.c
-NOMBRE = holberton
-OBJ = ${SRC:%.c=%.o}
+SRC = main.c school.c
+OBJ = $(SRC:%.c=%.o)
+NAME = school
 RM = rm -f
 
-todos: ${OBJ}
- ${CC} ${OBJ} -o ${NOMBRE}
+all: $(OBJ)
+	$(CC) $(OBJ) -o $(NAME)
 
-limpio:
- ${RM} *~ ${NOMBRE}
+clean: 
+	$(RM) *~ $(NAME)
 
 oclean:
-	${RM} ${OBJ}
+	$(RM) $(OBJ)
 
-fclean: limpio oclean
+fclean: clean oclean
 
-re: oclean todo
+re: oclean all

@@ -1,6 +1,6 @@
 CC = gcc
-SRC = main.c holberton.c
-NOMBRE = holberton
+SRC = main.c school
+Name = school
 OBJ = ${SRC:%.c=%.o}
 RM = rm -f
 CFLAGS = -Muro -Werror -Wextra -pedante
