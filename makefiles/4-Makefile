@@ -1,19 +1,19 @@
 CC = gcc
-SRC = main.c school
-Name = school
-OBJ = ${SRC:%.c=%.o}
+SRC = main.c school.c
+OBJ = $(SRC:%.c=%.o)
+NAME = school
 RM = rm -f
-CFLAGS = -Muro -Werror -Wextra -pedante
+CFLAGS = -Wall -Werror -Wextra -pedantic
 
-todos: ${OBJ}
- ${CC} ${CFLAGS} ${OBJ} -o ${NOMBRE}
+all: $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
-limpio:
- ${RM} *~ ${NOMBRE}
+clean: 
+	$(RM) *~ $(NAME)
 
 oclean:
-	${RM} ${OBJ}
+	$(RM) $(OBJ)
 
-fclean: limpio oclean
+fclean: clean oclean
 
-re: oclean todo
+re: oclean all
