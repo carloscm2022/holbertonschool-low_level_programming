@@ -1,32 +1,28 @@
-#incluir "variadic_functions.h"
-
+#include "variadic_functions.h"
 /**
-* print_numbers - imprime números, seguidos de una nueva línea.
-* @separator: delimitador
-* @n: n args
-* Devolución: nula
-*/
+ * print_numbers - Print all the numbers passed like arguments
+ *
+ * @separator: String to separate numbers
+ *
+ * @n: Number of arguments
+ *
+ * Return: Void
+ */
+
 void print_numbers(const char *separator, const unsigned int n, ...)
 {
-	va_list lista;
-	sin firmar int i;
+	va_list number;
+	unsigned int i;
 
-	va_start(lista, n);
-	si (n != 0)
+	va_start(number, n);
+
+	for (i = 0; i < n; i++)
 	{
-		para (i = 0; (i < n - 1); i++)
-		{
-			if (separador != NULL)
-			{
-				printf("%d%s", va_arg(list, int), separador);
-			}
-			más
-			{
-				printf("%d", va_arg(list, int));
-			}
-		}
-		printf("%d", va_arg(list, int));
-		va_end (lista);
+		printf("%d", va_arg(number, int));
+		if (i < (n - 1) && separator)
+			printf("%s", separator);
 	}
-	printf("\n");
+
+	va_end(number);
+	putchar(10);
 }
